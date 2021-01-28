@@ -9,6 +9,7 @@ public class RockPaperScissors {
     public static int computerRandomNumber;
     public static int gameIsRunning = 1;
     public static int waitingForUserRetryChoice = 0;
+    public static int waitingForCorrectUserEntry = 0;
     public static int computerScore = 0;
     public static int humanScore = 0;
     public static void main(String[] args) {
@@ -23,17 +24,43 @@ public class RockPaperScissors {
 
             // this ensures the user is prompted at the end of each game to try again.
             RockPaperScissors.waitingForUserRetryChoice = 0;
+            RockPaperScissors.waitingForCorrectUserEntry = 0;
 
 
             // this creates the random number between 1 and 3.
             computerRandomNumber = 1 + (int) (Math.random()* 3);
             
+            //this checks to ensure the user's entry is valid.
+            while (RockPaperScissors.waitingForCorrectUserEntry == 0) {
+                // gets user input for rock, paper, or scissors.
+                try {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Please enter a value of 1 (Rock), 2 (Paper), or 3 (Scissors)");
+                    RockPaperScissors.userNumberChosen = sc.nextInt();
+                }
+                catch(Exception e) {
+                    System.out.println("Incorrect entry recorded, please try again.\n");
+                }
 
-            // gets user input for rock, paper, or scissors.
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Please enter a value of 1 (Rock), 2 (Paper), or 3 (Scissors)");
-            RockPaperScissors.userNumberChosen = sc.nextInt();
-            
+                // this assigns the user option to a string.
+                switch(RockPaperScissors.userNumberChosen) {
+                    case 1:
+                        RockPaperScissors.userOptionSelected = "Rock";
+                        RockPaperScissors.waitingForCorrectUserEntry = 1;
+                        break;
+                    case 2:
+                        RockPaperScissors.userOptionSelected = "Paper";
+                        RockPaperScissors.waitingForCorrectUserEntry = 1;
+                        break;
+                    case 3:
+                        RockPaperScissors.userOptionSelected = "Scissors";
+                        RockPaperScissors.waitingForCorrectUserEntry = 1;
+                        break;
+                    default:
+                        System.out.println("Incorrect option entered, please try again.\n");
+                }
+            }
+
             // this assigns the computer option to a string.
             switch(computerRandomNumber) {
                 case 1:
@@ -44,21 +71,6 @@ public class RockPaperScissors {
                     break;
                 case 3:
                     RockPaperScissors.optionSelected = "Scissors";
-                    break;
-                default:
-                    System.out.println("An exception occurred.");
-            }
-
-            // this assigns the user option to a string.
-            switch(RockPaperScissors.userNumberChosen) {
-                case 1:
-                    RockPaperScissors.userOptionSelected = "Rock";
-                    break;
-                case 2:
-                    RockPaperScissors.userOptionSelected = "Paper";
-                    break;
-                case 3:
-                    RockPaperScissors.userOptionSelected = "Scissors";
                     break;
                 default:
                     System.out.println("An exception occurred.");
