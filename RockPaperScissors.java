@@ -119,7 +119,7 @@ public class RockPaperScissors {
             }
 
             // this section prints the score each round so the player can see how they are doing.
-            System.out.println("Current Score, Player 1: " + humanScore + ", Computer: " + computerScore);
+            System.out.println("Current Scores:\nPlayer 1: " + humanScore + "\nComputer: " + computerScore);
             System.out.println("");
 
             // checks the users input to see if their entry was valid or not for whether the game should continue.
